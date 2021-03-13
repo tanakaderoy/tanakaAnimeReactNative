@@ -14,6 +14,7 @@ import {SafeAreaProvider} from 'react-native-safe-area-context';
 import Icon from 'react-native-vector-icons/Ionicons';
 
 import {Colors} from 'react-native/Libraries/NewAppScreen';
+import BaseUrlProvider from './src/context/BaseUrlProvider';
 import {HomeStack} from './src/HomeStack';
 import SettingsScreen from './src/screens/SettingsScreen';
 import {SearchStack} from './src/SearchStack';
@@ -27,38 +28,45 @@ type TabParamList = {
 };
 
 const App: () => ReactNode = () => (
-  <SafeAreaProvider>
-    <NavigationContainer>
-      <Tab.Navigator
-        screenOptions={({route}) => ({
-          tabBarIcon: ({focused, color, size}) => {
-            let iconName = '';
-            //Ionicons
+  <BaseUrlProvider>
+    <SafeAreaProvider>
+      <NavigationContainer>
+        <Tab.Navigator
+          screenOptions={({route}) => ({
+            tabBarIcon: ({focused, color, size}) => {
+              let iconName = '';
+              //Ionicons
 
-            switch (route.name) {
-              case 'Home':
-                iconName = focused ? 'home' : 'home-outline';
-                break;
-              case 'Search':
-                iconName = focused ? 'search-circle' : 'search-circle-outline';
-                break;
-              case 'Settings':
-                iconName = focused ? 'settings' : 'settings-outline';
-                break;
-              default:
-                break;
-            }
+              switch (route.name) {
+                case 'Home':
+                  iconName = focused ? 'home' : 'home-outline';
+                  break;
+                case 'Search':
+                  iconName = focused
+                    ? 'search-circle'
+                    : 'search-circle-outline';
+                  break;
+                case 'Settings':
+                  iconName = focused ? 'settings' : 'settings-outline';
+                  break;
+                default:
+                  break;
+              }
 
-            return <Icon name={iconName} size={size} color={color} />;
-          },
-        })}
-        tabBarOptions={{activeTintColor: 'tomato', inactiveTintColor: 'gray'}}>
-        <Tab.Screen name="Home" component={HomeStack} />
-        <Tab.Screen name="Search" component={SearchStack} />
-        <Tab.Screen name="Settings" component={SettingsScreen} />
-      </Tab.Navigator>
-    </NavigationContainer>
-  </SafeAreaProvider>
+              return <Icon name={iconName} size={size} color={color} />;
+            },
+          })}
+          tabBarOptions={{
+            activeTintColor: 'tomato',
+            inactiveTintColor: 'gray',
+          }}>
+          <Tab.Screen name="Home" component={HomeStack} />
+          <Tab.Screen name="Search" component={SearchStack} />
+          <Tab.Screen name="Settings" component={SettingsScreen} />
+        </Tab.Navigator>
+      </NavigationContainer>
+    </SafeAreaProvider>
+  </BaseUrlProvider>
 );
 
 export default App;
