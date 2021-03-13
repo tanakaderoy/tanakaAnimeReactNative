@@ -18,6 +18,8 @@
 		514201552437B4B40078DB4F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 514201532437B4B40078DB4F /* Main.storyboard */; };
 		514201582437B4B40078DB4F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 514201572437B4B40078DB4F /* main.m */; };
 		B5C72D9C27A1E1D711C050EF /* libPods-Shared-tanakaanime-iOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FB6EED1BDEABADF047CC5223 /* libPods-Shared-tanakaanime-iOS.a */; };
+		BF8A046325FD3568005FBEB1 /* Fonts in Resources */ = {isa = PBXBuildFile; fileRef = BF8A046225FD3568005FBEB1 /* Fonts */; };
+		BF8A046625FD3940005FBEB1 /* Fonts in Resources */ = {isa = PBXBuildFile; fileRef = BF8A046225FD3568005FBEB1 /* Fonts */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -43,6 +45,7 @@
 		514201592437B4B40078DB4F /* tanakaanime.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = tanakaanime.entitlements; sourceTree = "<group>"; };
 		9D32DFD059D5DB6DDEF38881 /* Pods-Shared-tanakaanime-iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Shared-tanakaanime-iOS.debug.xcconfig"; path = "Target Support Files/Pods-Shared-tanakaanime-iOS/Pods-Shared-tanakaanime-iOS.debug.xcconfig"; sourceTree = "<group>"; };
 		A82DFB63B157C65E5D698CA2 /* Pods-Shared-tanakaanime-iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Shared-tanakaanime-iOS.release.xcconfig"; path = "Target Support Files/Pods-Shared-tanakaanime-iOS/Pods-Shared-tanakaanime-iOS.release.xcconfig"; sourceTree = "<group>"; };
+		BF8A046225FD3568005FBEB1 /* Fonts */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Fonts; path = "../../node_modules/react-native-vector-icons/Fonts"; sourceTree = "<group>"; };
 		C8DBC48FD7C3AEF576C57B21 /* libPods-Shared-tanakaanime-macOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Shared-tanakaanime-macOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE0E74F571E1F48FF00A8324 /* Pods-Shared-tanakaanime-macOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Shared-tanakaanime-macOS.release.xcconfig"; path = "Target Support Files/Pods-Shared-tanakaanime-macOS/Pods-Shared-tanakaanime-macOS.release.xcconfig"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
@@ -109,6 +112,7 @@
 		5142014A2437B4B30078DB4F /* tanakaanime-macOS */ = {
 			isa = PBXGroup;
 			children = (
+				BF8A046225FD3568005FBEB1 /* Fonts */,
 				38423A3E24576CBC00BC2EAC /* main.jsbundle */,
 				5142014B2437B4B30078DB4F /* AppDelegate.h */,
 				5142014C2437B4B30078DB4F /* AppDelegate.m */,
@@ -238,6 +242,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BF8A046625FD3940005FBEB1 /* Fonts in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */,
 			);
@@ -247,6 +252,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BF8A046325FD3568005FBEB1 /* Fonts in Resources */,
 				514201522437B4B40078DB4F /* Assets.xcassets in Resources */,
 				514201552437B4B40078DB4F /* Main.storyboard in Resources */,
 			);
