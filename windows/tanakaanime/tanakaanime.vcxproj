@@ -147,6 +147,24 @@
       <DeploymentContent>false</DeploymentContent>
     </Text>
   </ItemGroup>
+  <ItemGroup>
+    <Font Include="Assets\AntDesign.ttf" />
+    <Font Include="Assets\Entypo.ttf" />
+    <Font Include="Assets\EvilIcons.ttf" />
+    <Font Include="Assets\Feather.ttf" />
+    <Font Include="Assets\FontAwesome.ttf" />
+    <Font Include="Assets\FontAwesome5_Brands.ttf" />
+    <Font Include="Assets\FontAwesome5_Regular.ttf" />
+    <Font Include="Assets\FontAwesome5_Solid.ttf" />
+    <Font Include="Assets\Fontisto.ttf" />
+    <Font Include="Assets\Foundation.ttf" />
+    <Font Include="Assets\Ionicons.ttf" />
+    <Font Include="Assets\MaterialCommunityIcons.ttf" />
+    <Font Include="Assets\MaterialIcons.ttf" />
+    <Font Include="Assets\Octicons.ttf" />
+    <Font Include="Assets\SimpleLineIcons.ttf" />
+    <Font Include="Assets\Zocial.ttf" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <PropertyGroup Label="ReactNativeWindowsNodeProps">
     <ReactNativeWindowsDir Condition="'$(ReactNativeWindowsDir)' == ''">$([MSBuild]::GetDirectoryNameOfFileAbove($(MSBuildThisFileDirectory), 'node_modules\react-native-windows\package.json'))\node_modules\react-native-windows\</ReactNativeWindowsDir>
