@@ -3,13 +3,11 @@ import {StyleSheet, Text, View} from 'react-native';
 
 interface SettingsScreenProps {}
 
-const SettingsScreen: React.FC<SettingsScreenProps> = ({}) => {
-  return (
-    <View>
-      <Text> Settings </Text>
-    </View>
-  );
-};
+const SettingsScreen: React.FC<SettingsScreenProps> = () => (
+  <View>
+    <Text> Settings </Text>
+  </View>
+);
 
 export default SettingsScreen;
 
