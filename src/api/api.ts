@@ -17,7 +17,7 @@ const post = <T>(
   url: string,
   body: object,
   queryParams?: object,
-): Observable<T | void> => {
+): Observable<T> => {
   return defer(() =>
     axiosInstance.post<T>(url, body, {params: queryParams}),
   ).pipe(map(result => result.data));
@@ -29,8 +29,23 @@ const getLatestShows = (): Observable<LatestShow[]> => {
   );
 };
 
+const getEpisodes = <T>(show: string): Observable<T> => {
+  return get<T>('/shows', {show});
+};
+
+const getVideoUrl = <T>(link: string): Observable<T> => {
+  return post<T>('/watch', {episodeURL: link});
+};
+
 const changeBaseUrl = (url: string): void => {
   axiosInstance.defaults.baseURL = `http://${url}:8004`;
 };
 
-export default {get, post, getLatestShows, changeBaseUrl};
+export default {
+  get,
+  post,
+  getLatestShows,
+  changeBaseUrl,
+  getEpisodes,
+  getVideoUrl,
+};

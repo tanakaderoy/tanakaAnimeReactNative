@@ -7,4 +7,5 @@ export const axiosRequestConfiguration: AxiosRequestConfig = {
   headers: {
     'Content-Type': 'application/json',
   },
+  timeout: 5000,
 };

@@ -1,12 +1,14 @@
+import {StackScreenProps} from '@react-navigation/stack';
 import React, {useEffect, useState} from 'react';
-import {FlatList, StyleSheet, Text, View} from 'react-native';
+import {FlatList, StyleSheet, TouchableOpacity, View} from 'react-native';
 import api from '../api/api';
 import ShowItem from '../components/ShowItem';
+import {HomeStackParamList} from '../HomeStack';
 import {LatestShow} from '../models/LatestShow';
 
-interface HomeScreenProps {}
+interface HomeScreenProps extends StackScreenProps<HomeStackParamList> {}
 
-const HomeScreen: React.FC<HomeScreenProps> = () => {
+const HomeScreen: React.FC<HomeScreenProps> = ({navigation}) => {
   const [shows, setShows] = useState<LatestShow[]>([]);
   useEffect(() => {
     const unsub = api.getLatestShows().subscribe(shows => {
@@ -24,7 +26,14 @@ const HomeScreen: React.FC<HomeScreenProps> = () => {
         data={shows}
         keyExtractor={it => it.url}
         renderItem={({item}) => {
-          return <ShowItem show={item} />;
+          return (
+            <TouchableOpacity
+              onPress={() => {
+                navigation.navigate('Detail', {show: item});
+              }}>
+              <ShowItem show={item} />
+            </TouchableOpacity>
+          );
         }}
       />
     </View>
