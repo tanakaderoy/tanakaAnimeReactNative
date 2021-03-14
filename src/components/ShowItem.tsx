@@ -26,6 +26,8 @@ const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
     margin: 16,
+    flex: 1,
+    backgroundColor: '#fff',
   },
   infoContainer: {
     flexDirection: 'column',

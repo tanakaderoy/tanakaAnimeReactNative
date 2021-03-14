@@ -165,6 +165,26 @@
     <Font Include="Assets\SimpleLineIcons.ttf" />
     <Font Include="Assets\Zocial.ttf" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\node_modules\react-native-video\windows\ReactNativeVideoCPP\ReactNativeVideoCPP.vcxproj">
+      <Project>{765365e4-9553-4900-9f69-e26d4309c8da}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\node_modules\react-native-windows\Common\Common.vcxproj">
+      <Project>{fca38f3c-7c73-4c47-be4e-32f77fa8538d}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\node_modules\react-native-windows\Folly\Folly.vcxproj">
+      <Project>{a990658c-ce31-4bcc-976f-0fc6b1af693d}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\node_modules\react-native-windows\JSI\Universal\JSI.Universal.vcxproj">
+      <Project>{a62d504a-16b8-41d2-9f19-e2e86019e5e4}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\node_modules\react-native-windows\ReactCommon\ReactCommon.vcxproj">
+      <Project>{a9d95a91-4db7-4f72-beb6-fe8a5c89bfbd}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\node_modules\react-native-windows\ReactWindowsCore\ReactWindowsCore.vcxproj">
+      <Project>{11c084a3-a57c-4296-a679-cac17b603144}</Project>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <PropertyGroup Label="ReactNativeWindowsNodeProps">
     <ReactNativeWindowsDir Condition="'$(ReactNativeWindowsDir)' == ''">$([MSBuild]::GetDirectoryNameOfFileAbove($(MSBuildThisFileDirectory), 'node_modules\react-native-windows\package.json'))\node_modules\react-native-windows\</ReactNativeWindowsDir>

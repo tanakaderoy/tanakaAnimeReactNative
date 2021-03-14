@@ -4,6 +4,7 @@ import {axiosRequestConfiguration} from './config';
 import {map} from 'rxjs/operators';
 import {defer, Observable} from 'rxjs';
 import {LatestShow} from '../models/LatestShow';
+import {SearchResult} from '../models/SearchResult';
 
 const axiosInstance = initializeAxios(axiosRequestConfiguration);
 
@@ -37,6 +38,23 @@ const getVideoUrl = <T>(link: string): Observable<T> => {
   return post<T>('/watch', {episodeURL: link});
 };
 
+const searchShow = (query: string): Observable<LatestShow[]> => {
+  return get<SearchResult[]>('/shows/search', {query}).pipe(
+    map(res => {
+      return res.map(result => {
+        let latestShow: LatestShow = {
+          title: result.title,
+          image: result.poster,
+          currentEp: '',
+          currentEpURL: '',
+          url: result.link,
+        };
+        return latestShow;
+      });
+    }),
+  );
+};
+
 const changeBaseUrl = (url: string): void => {
   axiosInstance.defaults.baseURL = `http://${url}:8004`;
 };
@@ -48,4 +66,5 @@ export default {
   changeBaseUrl,
   getEpisodes,
   getVideoUrl,
+  searchShow,
 };

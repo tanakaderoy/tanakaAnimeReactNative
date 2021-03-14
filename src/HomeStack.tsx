@@ -3,6 +3,7 @@ import {createStackNavigator} from '@react-navigation/stack';
 import HomeScreen from './screens/HomeScreen';
 import {LatestShow} from './models/LatestShow';
 import ShowDetail from './screens/ShowDetailScreen';
+import { SearchResult } from './models/SearchResult';
 
 export type HomeStackParamList = {
   Home: undefined;
