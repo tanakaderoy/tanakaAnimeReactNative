@@ -33,6 +33,8 @@ type TabParamList = {
 const App: () => ReactNode = () => {
   const orientation = useOrientation();
   const {videoPlaying, setIsPlaying} = useContext(VideoPlayingContext);
+  console.log(orientation);
+
   return (
     <VideoPlayingProvider>
       <SafeAreaProvider>

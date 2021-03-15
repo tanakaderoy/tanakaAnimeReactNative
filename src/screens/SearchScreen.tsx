@@ -51,6 +51,7 @@ setShows(results)
             flex: 1,
             padding: 8,
             borderWidth: 1,
+            color: 'black'
           }}
         />
         <Button

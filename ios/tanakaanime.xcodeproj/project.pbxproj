@@ -19,6 +19,12 @@
 		2DCD954D1E0B4F2C00145EB5 /* tanakaanimeTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* tanakaanimeTests.m */; };
 		78B4AB90C5E6813274F26E10 /* libPods-tanakaanime-tanakaanimeTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 38CDE1B4EFA7EEB5DBA27030 /* libPods-tanakaanime-tanakaanimeTests.a */; };
 		AAF98B53B24564521219EC48 /* libPods-tanakaanime-tvOSTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2DBA291EC4098FDB2D30C865 /* libPods-tanakaanime-tvOSTests.a */; };
+		BF8A066F25FFD340005FBEB1 /* VideoPlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF8A066E25FFD340005FBEB1 /* VideoPlayerView.swift */; };
+		BF8A067025FFD340005FBEB1 /* VideoPlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF8A066E25FFD340005FBEB1 /* VideoPlayerView.swift */; };
+		BF8A067625FFD364005FBEB1 /* VideoPlayerViewManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF8A067525FFD364005FBEB1 /* VideoPlayerViewManager.swift */; };
+		BF8A067725FFD364005FBEB1 /* VideoPlayerViewManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF8A067525FFD364005FBEB1 /* VideoPlayerViewManager.swift */; };
+		BF8A067D25FFD38B005FBEB1 /* VideoPlayerViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = BF8A067C25FFD38B005FBEB1 /* VideoPlayerViewManager.m */; };
+		BF8A067E25FFD38B005FBEB1 /* VideoPlayerViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = BF8A067C25FFD38B005FBEB1 /* VideoPlayerViewManager.m */; };
 		F0E805EC810912011CAD4E1B /* libPods-tanakaanime-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C687CBCA3BA8DC93B8410B2E /* libPods-tanakaanime-tvOS.a */; };
 /* End PBXBuildFile section */
 
@@ -61,6 +67,11 @@
 		54D7356D264F574773F5CABF /* Pods-tanakaanime-tanakaanimeTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-tanakaanime-tanakaanimeTests.debug.xcconfig"; path = "Target Support Files/Pods-tanakaanime-tanakaanimeTests/Pods-tanakaanime-tanakaanimeTests.debug.xcconfig"; sourceTree = "<group>"; };
 		88F1CE7EE80C583CC69FE225 /* Pods-tanakaanime.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-tanakaanime.debug.xcconfig"; path = "Target Support Files/Pods-tanakaanime/Pods-tanakaanime.debug.xcconfig"; sourceTree = "<group>"; };
 		B46F02D1EE48B62AF584577D /* Pods-tanakaanime-tanakaanimeTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-tanakaanime-tanakaanimeTests.release.xcconfig"; path = "Target Support Files/Pods-tanakaanime-tanakaanimeTests/Pods-tanakaanime-tanakaanimeTests.release.xcconfig"; sourceTree = "<group>"; };
+		BF8A066C25FFD33F005FBEB1 /* tanakaanime-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "tanakaanime-Bridging-Header.h"; sourceTree = "<group>"; };
+		BF8A066D25FFD33F005FBEB1 /* tanakaanime-tvOS-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "tanakaanime-tvOS-Bridging-Header.h"; sourceTree = "<group>"; };
+		BF8A066E25FFD340005FBEB1 /* VideoPlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPlayerView.swift; sourceTree = "<group>"; };
+		BF8A067525FFD364005FBEB1 /* VideoPlayerViewManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPlayerViewManager.swift; sourceTree = "<group>"; };
+		BF8A067C25FFD38B005FBEB1 /* VideoPlayerViewManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VideoPlayerViewManager.m; sourceTree = "<group>"; };
 		C687CBCA3BA8DC93B8410B2E /* libPods-tanakaanime-tvOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-tanakaanime-tvOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C83352BEC0E156155D3CE147 /* Pods-tanakaanime-tvOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-tanakaanime-tvOSTests.release.xcconfig"; path = "Target Support Files/Pods-tanakaanime-tvOSTests/Pods-tanakaanime-tvOSTests.release.xcconfig"; sourceTree = "<group>"; };
 		D93BCD204D5122D3ECB5588B /* Pods-tanakaanime-tvOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-tanakaanime-tvOS.debug.xcconfig"; path = "Target Support Files/Pods-tanakaanime-tvOS/Pods-tanakaanime-tvOS.debug.xcconfig"; sourceTree = "<group>"; };
@@ -128,10 +139,15 @@
 				008F07F21AC5B25A0029DE68 /* main.jsbundle */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
 				13B07FB01A68108700A75B9A /* AppDelegate.m */,
+				BF8A066E25FFD340005FBEB1 /* VideoPlayerView.swift */,
+				BF8A067525FFD364005FBEB1 /* VideoPlayerViewManager.swift */,
+				BF8A067C25FFD38B005FBEB1 /* VideoPlayerViewManager.m */,
 				13B07FB51A68108700A75B9A /* Images.xcassets */,
 				13B07FB61A68108700A75B9A /* Info.plist */,
 				13B07FB11A68108700A75B9A /* LaunchScreen.xib */,
 				13B07FB71A68108700A75B9A /* main.m */,
+				BF8A066C25FFD33F005FBEB1 /* tanakaanime-Bridging-Header.h */,
+				BF8A066D25FFD33F005FBEB1 /* tanakaanime-tvOS-Bridging-Header.h */,
 			);
 			name = tanakaanime;
 			sourceTree = "<group>";
@@ -194,7 +210,6 @@
 				2A098169824F8A50CD222843 /* Pods-tanakaanime-tvOSTests.debug.xcconfig */,
 				C83352BEC0E156155D3CE147 /* Pods-tanakaanime-tvOSTests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -294,10 +309,12 @@
 						TestTargetID = 13B07F861A680F5B00A75B9A;
 					};
 					13B07F861A680F5B00A75B9A = {
-						LastSwiftMigration = 1120;
+						DevelopmentTeam = J3NVQ5AFC2;
+						LastSwiftMigration = 1240;
 					};
 					2D02E47A1E0B4A5D006451C7 = {
 						CreatedOnToolsVersion = 8.2.1;
+						LastSwiftMigration = 1240;
 						ProvisioningStyle = Automatic;
 					};
 					2D02E48F1E0B4A5D006451C7 = {
@@ -375,7 +392,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "export NODE_BINARY=node\n../node_modules/react-native/scripts/react-native-xcode.sh";
+			shellScript = "export NODE_BINARY=node\n../node_modules/react-native/scripts/react-native-xcode.sh\n";
 		};
 		19D6FCFA14FB511DFC08B149 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -629,7 +646,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */,
+				BF8A067625FFD364005FBEB1 /* VideoPlayerViewManager.swift in Sources */,
 				13B07FC11A68108700A75B9A /* main.m in Sources */,
+				BF8A066F25FFD340005FBEB1 /* VideoPlayerView.swift in Sources */,
+				BF8A067D25FFD38B005FBEB1 /* VideoPlayerViewManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -638,7 +658,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				2D02E4BF1E0B4AB3006451C7 /* main.m in Sources */,
+				BF8A067725FFD364005FBEB1 /* VideoPlayerViewManager.swift in Sources */,
 				2D02E4BC1E0B4A80006451C7 /* AppDelegate.m in Sources */,
+				BF8A067025FFD340005FBEB1 /* VideoPlayerView.swift in Sources */,
+				BF8A067E25FFD38B005FBEB1 /* VideoPlayerViewManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -682,6 +705,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 54D7356D264F574773F5CABF /* Pods-tanakaanime-tanakaanimeTests.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
@@ -705,6 +729,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = B46F02D1EE48B62AF584577D /* Pods-tanakaanime-tanakaanimeTests.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				COPY_PHASE_STRIP = NO;
 				INFOPLIST_FILE = tanakaanimeTests/Info.plist;
@@ -728,12 +753,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = J3NVQ5AFC2;
 				ENABLE_BITCODE = NO;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"$(inherited)",
 					"FB_SONARKIT_ENABLED=1",
 				);
 				INFOPLIST_FILE = tanakaanime/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (
 					"$(inherited)",
@@ -742,8 +769,10 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = tanakaanime;
+				SWIFT_OBJC_BRIDGING_HEADER = "tanakaanime-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Debug;
@@ -755,7 +784,9 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = J3NVQ5AFC2;
 				INFOPLIST_FILE = tanakaanime/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (
 					"$(inherited)",
@@ -764,7 +795,9 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = tanakaanime;
+				SWIFT_OBJC_BRIDGING_HEADER = "tanakaanime-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Release;
@@ -776,6 +809,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ENABLE_MODULES = YES;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -792,6 +826,9 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.tanakaanime-tvOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = appletvos;
+				SWIFT_OBJC_BRIDGING_HEADER = "tanakaanime-tvOS-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 3;
 				TVOS_DEPLOYMENT_TARGET = 9.2;
 			};
@@ -804,6 +841,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ENABLE_MODULES = YES;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -820,6 +858,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.tanakaanime-tvOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = appletvos;
+				SWIFT_OBJC_BRIDGING_HEADER = "tanakaanime-tvOS-Bridging-Header.h";
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 3;
 				TVOS_DEPLOYMENT_TARGET = 9.2;
 			};
@@ -829,6 +869,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 2A098169824F8A50CD222843 /* Pods-tanakaanime-tvOSTests.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
@@ -856,6 +897,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = C83352BEC0E156155D3CE147 /* Pods-tanakaanime-tvOSTests.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;

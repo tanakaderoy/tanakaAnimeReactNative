@@ -19,10 +19,10 @@ import {useOrientation} from '../hooks/useOrientation';
 import {VideoPlayingContext} from '../context/VideoPlayingProvider';
 import VideoPlayer from '../components/VideoPlayer';
 
-interface ShowDetailProps
+interface ShowDetailDesktopProps
   extends StackScreenProps<HomeStackParamList, 'Detail'> {}
 
-const ShowDetail: React.FC<ShowDetailProps> = ({
+const ShowDetailDesktop: React.FC<ShowDetailDesktopProps> = ({
   route: {params},
   navigation,
 }) => {
@@ -69,28 +69,19 @@ const ShowDetail: React.FC<ShowDetailProps> = ({
       title: show.title,
     });
   }, [orientation]);
+
   function RenderVideo(): React.ReactElement {
     return (
       <>
-        {vid && (
+        {vid && Platform.OS == 'macos' && (
           <VideoPlayer
-            style={styles.video}
             url={vid}
             thumbnailUrl={show.image}
             videoName={show.title}
             onPlayerUpdate={e => console.log(e)}
           />
         )}
-      </>
-    );
-  }
-
-  return (
-    <View
-      style={[styles.container, {margin: orientation == 'PORTRAIT' ? 24 : 0}]}>
-      <StatusBar hidden={orientation == 'LANDSCAPE'} />
-      <View style={[styles.videoContainer, {height: vidHeight}]}>
-        {vid && Platform.OS == 'android' && (
+        {vid && Platform.OS == 'windows' && (
           <Video
             ref={videoPlayer}
             resizeMode="cover"
@@ -106,49 +97,67 @@ const ShowDetail: React.FC<ShowDetailProps> = ({
             }}
           />
         )}
-        {vid && Platform.OS == 'ios' && <RenderVideo />}
-      </View>
-      <View style={styles.infoContainer}>
-        <Text h3>{show.title}</Text>
-        <Image style={styles.poster} source={{uri: show.image}} />
-      </View>
-      <View style={styles.episodeListContainer}>
-        <FlatList
-          data={episodes}
-          keyExtractor={it => it.link + it.title}
-          renderItem={({item, index}) => {
-            return (
-              <TouchableOpacity
-                onPress={() => {
-                  if (item.link != watchUrl) {
-                    setVid(undefined);
-                    setWatchUrl(item.link);
-                  }
-                }}>
-                <EpisodeItem data={item} />
-              </TouchableOpacity>
-            );
-          }}
-        />
+      </>
+    );
+  }
+
+  return (
+    <View
+      style={[styles.container, {margin: orientation == 'PORTRAIT' ? 24 : 0}]}>
+      <StatusBar hidden={orientation == 'LANDSCAPE'} />
+      <View style={styles.parent}>
+        <View>
+          <View style={[styles.videoContainer, {height: vidHeight}]}>
+            <RenderVideo />
+          </View>
+          <View style={styles.infoContainer}>
+            <Text h3>{show.title}</Text>
+            <Image style={styles.poster} source={{uri: show.image}} />
+          </View>
+        </View>
+        <View style={styles.episodeListContainer}>
+          <FlatList
+            data={episodes}
+            keyExtractor={it => it.link + it.title}
+            renderItem={({item, index}) => {
+              return (
+                <TouchableOpacity
+                  onPress={() => {
+                    if (item.link != watchUrl) {
+                      setVid(undefined);
+                      setWatchUrl(item.link);
+                    }
+                  }}>
+                  <EpisodeItem data={item} />
+                </TouchableOpacity>
+              );
+            }}
+          />
+        </View>
       </View>
     </View>
   );
 };
 
-export default ShowDetail;
+export default ShowDetailDesktop;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
   },
+  parent: {
+    flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+  },
   videoContainer: {
-    width: '100%',
+    width: Dimensions.get('screen').width * 0.35,
     // aspectRatio: 21 / 9,
 
     backgroundColor: '#000',
   },
   infoContainer: {
     flexDirection: 'row',
-    justifyContent: 'space-evenly',
+    justifyContent: 'space-between',
     alignItems: 'center',
     paddingHorizontal: 16,
     marginVertical: 8,

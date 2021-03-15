@@ -5,7 +5,7 @@ export function useOrientation() {
   const [orientation, setOrientation] = useState<'PORTRAIT' | 'LANDSCAPE'>(
     'PORTRAIT',
   );
-  if (Platform.OS !== 'windows') {
+  if (Platform.OS != 'macos' && Platform.OS != 'windows') {
     useEffect(() => {
       Dimensions.addEventListener('change', ({screen: {width, height}}) => {
         if (width < height) {
