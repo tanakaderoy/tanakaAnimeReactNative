@@ -61,7 +61,7 @@ setShows(results)
       </View>
       <FlatList
         data={shows}
-        keyExtractor={it => it.url}
+        keyExtractor={it => it.url+ it.title+`${Math.random()* 9999}`}
         renderItem={({item}) => {
           return (
             <TouchableOpacity

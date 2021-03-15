@@ -8,13 +8,15 @@
 
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {NavigationContainer} from '@react-navigation/native';
-import React, {ReactNode} from 'react';
+import React, {ReactNode, useContext} from 'react';
 import {StyleSheet} from 'react-native';
 import {SafeAreaProvider} from 'react-native-safe-area-context';
 import Icon from 'react-native-vector-icons/Ionicons';
 
 import {Colors} from 'react-native/Libraries/NewAppScreen';
-import BaseUrlProvider from './src/context/BaseUrlProvider';
+import VideoPlayingProvider, {
+  VideoPlayingContext,
+} from './src/context/VideoPlayingProvider';
 import {HomeStack} from './src/HomeStack';
 import {useOrientation} from './src/hooks/useOrientation';
 import SettingsScreen from './src/screens/SettingsScreen';
@@ -30,8 +32,9 @@ type TabParamList = {
 
 const App: () => ReactNode = () => {
   const orientation = useOrientation();
+  const {videoPlaying, setIsPlaying} = useContext(VideoPlayingContext);
   return (
-    <BaseUrlProvider>
+    <VideoPlayingProvider>
       <SafeAreaProvider>
         <NavigationContainer>
           <Tab.Navigator
@@ -66,18 +69,22 @@ const App: () => ReactNode = () => {
             <Tab.Screen
               name="Home"
               component={HomeStack}
-              options={{tabBarVisible: orientation == 'PORTRAIT'}}
+              options={{
+                tabBarVisible: orientation == 'PORTRAIT' && !videoPlaying,
+              }}
             />
             <Tab.Screen
               name="Search"
               component={SearchStack}
-              options={{tabBarVisible: orientation == 'PORTRAIT'}}
+              options={{
+                tabBarVisible: orientation == 'PORTRAIT' && !videoPlaying,
+              }}
             />
             <Tab.Screen name="Settings" component={SettingsScreen} />
           </Tab.Navigator>
         </NavigationContainer>
       </SafeAreaProvider>
-    </BaseUrlProvider>
+    </VideoPlayingProvider>
   );
 };
 

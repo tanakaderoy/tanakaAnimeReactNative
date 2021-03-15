@@ -1,8 +1,10 @@
 import {StackScreenProps} from '@react-navigation/stack';
-import React, {useEffect, useRef, useState} from 'react';
+import React, {useContext, useEffect, useRef, useState} from 'react';
 import {
   Dimensions,
   FlatList,
+  Platform,
+  StatusBar,
   StyleSheet,
   TouchableOpacity,
   View,
@@ -15,6 +17,7 @@ import {HomeStackParamList} from '../HomeStack';
 import Video from 'react-native-video';
 import {useOrientation} from '../hooks/useOrientation';
 import {SearchStackParamList} from '../SearchStack';
+import {VideoPlayingContext} from '../context/VideoPlayingProvider';
 
 interface ShowDetailProps
   extends StackScreenProps<HomeStackParamList, 'Detail'> {}
@@ -27,8 +30,10 @@ const ShowDetail: React.FC<ShowDetailProps> = ({
   const [watchUrl, setWatchUrl] = useState('');
   const [vid, setVid] = useState<string | undefined>(undefined);
   const videoPlayer = useRef<Video>(null);
+  const {videoPlaying, setIsPlaying} = useContext(VideoPlayingContext);
+
   const orientation = useOrientation();
-  const vidHeight =
+  let vidHeight =
     orientation == 'PORTRAIT'
       ? Dimensions.get('screen').height * 0.35
       : Dimensions.get('screen').height;
@@ -66,7 +71,9 @@ const ShowDetail: React.FC<ShowDetailProps> = ({
   }, [orientation]);
 
   return (
-    <View style={styles.container}>
+    <View
+      style={[styles.container, {margin: orientation == 'PORTRAIT' ? 24 : 0}]}>
+      <StatusBar hidden={orientation == 'LANDSCAPE'} />
       <View style={[styles.videoContainer, {height: vidHeight}]}>
         {vid && (
           <Video
@@ -76,14 +83,17 @@ const ShowDetail: React.FC<ShowDetailProps> = ({
             source={{uri: vid}}
             style={styles.video}
             controls
-            fullscreen={orientation == 'LANDSCAPE'}
+            onVideoEnd={() => {
+              setIsPlaying(false);
+            }}
+            onVideoLoadStart={() => {
+              setIsPlaying(true);
+            }}
           />
         )}
       </View>
       <View style={styles.infoContainer}>
-        <Text style={{alignSelf: 'center'}} h3>
-          {show.title}
-        </Text>
+        <Text h3>{show.title}</Text>
         <Image style={styles.poster} source={{uri: show.image}} />
       </View>
       <View style={styles.episodeListContainer}>
@@ -113,7 +123,6 @@ export default ShowDetail;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    margin: 24,
   },
   videoContainer: {
     width: '100%',
@@ -124,14 +133,15 @@ const styles = StyleSheet.create({
   infoContainer: {
     flexDirection: 'row',
     justifyContent: 'space-between',
+    alignItems: 'center',
     paddingHorizontal: 16,
-    height: 100,
-    backgroundColor: 'gray',
+    marginVertical: 8,
+    height: Platform.OS == ('android' || 'ios') ? 50 : 100,
   },
   poster: {
-    width: 100,
-    height: 100,
-    borderRadius: 50,
+    width: Platform.OS == ('android' || 'ios') ? 50 : 100,
+    height: Platform.OS == ('android' || 'ios') ? 50 : 100,
+    borderRadius: Platform.OS == ('android' || 'ios') ? 25 : 50,
   },
   video: {
     // height: 350,
