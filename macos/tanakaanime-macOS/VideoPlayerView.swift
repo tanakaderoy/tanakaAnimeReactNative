@@ -33,6 +33,11 @@ class VideoPlayerView: NSView {
   @objc var url: NSString = "" {
     didSet {
       print(url)
+      playerView.player = nil
+      player = nil
+      player = AVPlayer()
+      playerView.player = player
+
       playVideo(url)
 //      playVideo("https://mountainoservo0002.animecdn.com/Jujutsu-Kaisen/Jujutsu-Kaisen-Episode-01-1080p.mp4")
     }
@@ -48,7 +53,6 @@ class VideoPlayerView: NSView {
   override init(frame frameRect: NSRect) {
     super.init(frame: frameRect)
   commoninit()
-    playerView.player = player
   }
 
   required init?(coder aDecoder: NSCoder) {
