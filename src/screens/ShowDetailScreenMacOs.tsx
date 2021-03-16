@@ -150,8 +150,8 @@ const styles = StyleSheet.create({
     justifyContent: 'space-around',
   },
   videoContainer: {
-    width: Dimensions.get('screen').width * 0.35,
-    // aspectRatio: 21 / 9,
+    // width: Dimensions.get('screen').width * 0.35,
+    aspectRatio: 16 / 9,
 
     backgroundColor: '#000',
   },
