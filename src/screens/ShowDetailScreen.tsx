@@ -31,6 +31,7 @@ const ShowDetail: React.FC<ShowDetailProps> = ({
   const [vid, setVid] = useState<string | undefined>(undefined);
   const videoPlayer = useRef<Video>(null);
   const {videoPlaying, setIsPlaying} = useContext(VideoPlayingContext);
+  const [currentEpisode, setCurrentEpisode] = useState<Episode>()
 
   const orientation = useOrientation();
   const vidHeight =
@@ -46,6 +47,8 @@ const ShowDetail: React.FC<ShowDetailProps> = ({
       setWatchUrl(
         show.currentEpURL != '' ? show.currentEpURL : res[res.length - 1].link,
       );
+
+      setCurrentEpisode( show.currentEpURL != '' ? {title: show.title, subtitle:show.currentEp, link:show.currentEpURL}:res[res.length - 1])
     });
 
     return () => {
@@ -66,9 +69,9 @@ const ShowDetail: React.FC<ShowDetailProps> = ({
   useEffect(() => {
     navigation.setOptions({
       headerShown: orientation == 'PORTRAIT',
-      title: show.title,
+      title: `${show.title}: ${currentEpisode?.subtitle}`,
     });
-  }, [orientation]);
+  }, [orientation, currentEpisode]);
   function RenderVideo(): React.ReactElement {
     return (
       <>
@@ -87,7 +90,7 @@ const ShowDetail: React.FC<ShowDetailProps> = ({
 
   return (
     <View
-      style={[styles.container, {margin: orientation == 'PORTRAIT' ? 24 : 0}]}>
+      style={[styles.container, {margin: orientation == 'PORTRAIT' ? 2 : 0}]}>
       <StatusBar hidden={orientation == 'LANDSCAPE'} />
       <View style={[styles.videoContainer, {height: vidHeight}]}>
         {vid && Platform.OS == 'android' && (
@@ -142,7 +145,7 @@ const styles = StyleSheet.create({
   },
   videoContainer: {
     width: '100%',
-    // aspectRatio: 21 / 9,
+    // aspectRatio: 16 / 9,
 
     backgroundColor: '#000',
   },
