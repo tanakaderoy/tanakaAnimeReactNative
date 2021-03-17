@@ -1,1 +1,1 @@
-export const BASE_URL = 'http://10.147.1.153:8004';
+export const BASE_URL = 'https://tanaka-anime.herokuapp.com/';

@@ -56,7 +56,7 @@ const searchShow = (query: string): Observable<LatestShow[]> => {
 };
 
 const changeBaseUrl = (url: string): void => {
-  axiosInstance.defaults.baseURL = `http://${url}:8004`;
+  axiosInstance.defaults.baseURL = url;
 };
 
 export default {

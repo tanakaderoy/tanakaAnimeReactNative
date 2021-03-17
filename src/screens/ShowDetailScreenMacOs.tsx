@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
 import {StackScreenProps} from '@react-navigation/stack';
 import React, {useContext, useEffect, useRef, useState} from 'react';
 import {
@@ -78,7 +79,7 @@ const ShowDetailDesktop: React.FC<ShowDetailDesktopProps> = ({
             url={vid}
             thumbnailUrl={show.image}
             videoName={show.title}
-            onPlayerUpdate={e => console.log(e)}
+            onPlayerUpdate={e => console.log(e['nativeEvent'])}
           />
         )}
         {vid && Platform.OS == 'windows' && (
