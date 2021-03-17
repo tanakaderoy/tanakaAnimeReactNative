@@ -33,10 +33,6 @@ class VideoPlayerView: NSView {
   @objc var url: NSString = "" {
     didSet {
       print(url)
-      playerView.player = nil
-      player = nil
-      player = AVPlayer()
-      playerView.player = player
 
       playVideo(url)
 //      playVideo("https://mountainoservo0002.animecdn.com/Jujutsu-Kaisen/Jujutsu-Kaisen-Episode-01-1080p.mp4")
@@ -157,7 +153,10 @@ class VideoPlayerView: NSView {
   @objc func playVideo( _ url: NSString){
     guard let itemUrl = URL(string: url  as String) else {return}
     let playerItem = AVPlayerItem(url: itemUrl)
-    player?.replaceCurrentItem(with: playerItem)
+    playerView.player = nil
+    player = nil
+    player = AVPlayer(playerItem: playerItem)
+    playerView.player = player
     player?.currentItem?.addObserver(self, forKeyPath: "duration", options: [.new, .initial], context: nil)
     addTimeObseerver()
     play()

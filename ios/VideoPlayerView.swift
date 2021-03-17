@@ -35,7 +35,7 @@ class VideoPlayerView: UIView {
   @objc var url: NSString = "" {
     didSet {
       print(url)
-      playVideo("https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4")
+      playVideo(url)
     }
   }
   @objc var onPlayerUpdate: RCTDirectEventBlock?
@@ -69,7 +69,8 @@ class VideoPlayerView: UIView {
   fileprivate func setUpPlayerContainer() {
     playerContainerView = UIView()
     playerContainerView.backgroundColor = .red
-//    addSubview(playerContainerView)
+    addSubview(playerContainerView)
+    playerContainerView.fillSuperView()
     
 //    playerContainerView.translatesAutoresizingMaskIntoConstraints = false
 //    NSLayoutConstraint.activate([
@@ -78,27 +79,28 @@ class VideoPlayerView: UIView {
 //      playerContainerView.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 1),
 //      playerContainerView.topAnchor.constraint(equalTo: topAnchor)
 //    ])
-    self.backgroundColor = .blue
-    addPlayerToView(self)
+    addPlayerToView(playerContainerView)
   }
 
   fileprivate func commoninit() {
     setUpAudioSession()
     setUpPlayerContainer()
   }
+  var controller = AVPlayerViewController()
 
   fileprivate func addPlayerToView( _ view: UIView){
     player = AVPlayer()
 //    let controller = AVPlayerViewController()
-//    controller.player = player
-//    view.addSubview(controller.view)
-//    controller.view.backgroundColor = .yellow
-//    controller.view.fillSuperView()
-    playerLayer = AVPlayerLayer(player: player)
-    playerLayer.frame = view.frame
-    playerLayer.backgroundColor = UIColor.red.cgColor
-    playerLayer.videoGravity = .resizeAspectFill
-    view.layer.addSublayer(playerLayer)
+    controller.player = player
+    view.addSubview(controller.view)
+    controller.view.backgroundColor = .black
+    controller.view.fillSuperView()
+//    print(">>>>>>>>>>>>>>>>>>\n\(view.bounds)")
+//    playerLayer = AVPlayerLayer(player: player)
+//    playerLayer.frame = CGRect(x: 0, y: 0, width: 500, height: 500)
+//    playerLayer.backgroundColor = UIColor.red.cgColor
+//    playerLayer.videoGravity = .resizeAspectFill
+//    view.layer.addSublayer(playerLayer)
     NotificationCenter.default.addObserver(self, selector: #selector(playerEndPlay), name: .AVPlayerItemDidPlayToEndTime, object: nil)
     setupRemoteTransportControls()
     setUpObservers()
@@ -108,7 +110,7 @@ class VideoPlayerView: UIView {
   override func layoutSubviews() {
     super.layoutSubviews()
 
-//    playerLayer.frame = playerContainerView.bounds
+    controller.view.frame = playerContainerView.bounds
 
   }
 

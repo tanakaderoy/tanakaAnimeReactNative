@@ -23,6 +23,7 @@
 		BF8A055E25FF1004005FBEB1 /* VideoPlayerViewManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF8A055D25FF1004005FBEB1 /* VideoPlayerViewManager.swift */; };
 		BF8A056225FF1415005FBEB1 /* VideoPlayerViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = BF8A056125FF1415005FBEB1 /* VideoPlayerViewManager.m */; };
 		BF8A058725FFB5D4005FBEB1 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF8A058625FFB5D4005FBEB1 /* ViewController.swift */; };
+		BF8A0777260106EF005FBEB1 /* main.jsbundle in Resources */ = {isa = PBXBuildFile; fileRef = BF8A0776260106EF005FBEB1 /* main.jsbundle */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -35,7 +36,6 @@
 		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = tanakaanime/Info.plist; sourceTree = "<group>"; };
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		38423A3E24576CBC00BC2EAC /* main.jsbundle */ = {isa = PBXFileReference; lastKnownFileType = text; path = main.jsbundle; sourceTree = "<group>"; };
 		514201492437B4B30078DB4F /* tanakaanime.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = tanakaanime.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5142014B2437B4B30078DB4F /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		5142014C2437B4B30078DB4F /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -52,6 +52,7 @@
 		BF8A055D25FF1004005FBEB1 /* VideoPlayerViewManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPlayerViewManager.swift; sourceTree = "<group>"; };
 		BF8A056125FF1415005FBEB1 /* VideoPlayerViewManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VideoPlayerViewManager.m; sourceTree = "<group>"; };
 		BF8A058625FFB5D4005FBEB1 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		BF8A0776260106EF005FBEB1 /* main.jsbundle */ = {isa = PBXFileReference; lastKnownFileType = file; path = main.jsbundle; sourceTree = SOURCE_ROOT; };
 		C8DBC48FD7C3AEF576C57B21 /* libPods-Shared-tanakaanime-macOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Shared-tanakaanime-macOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE0E74F571E1F48FF00A8324 /* Pods-Shared-tanakaanime-macOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Shared-tanakaanime-macOS.release.xcconfig"; path = "Target Support Files/Pods-Shared-tanakaanime-macOS/Pods-Shared-tanakaanime-macOS.release.xcconfig"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
@@ -119,10 +120,10 @@
 			isa = PBXGroup;
 			children = (
 				BF8A046225FD3568005FBEB1 /* Fonts */,
-				38423A3E24576CBC00BC2EAC /* main.jsbundle */,
 				5142014B2437B4B30078DB4F /* AppDelegate.h */,
 				5142014C2437B4B30078DB4F /* AppDelegate.m */,
 				BF8A055725FF0F53005FBEB1 /* VideoPlayerView.swift */,
+				BF8A0776260106EF005FBEB1 /* main.jsbundle */,
 				BF8A055D25FF1004005FBEB1 /* VideoPlayerViewManager.swift */,
 				BF8A056125FF1415005FBEB1 /* VideoPlayerViewManager.m */,
 				BF8A058625FFB5D4005FBEB1 /* ViewController.swift */,
@@ -267,6 +268,7 @@
 				BF8A046325FD3568005FBEB1 /* Fonts in Resources */,
 				514201522437B4B40078DB4F /* Assets.xcassets in Resources */,
 				514201552437B4B40078DB4F /* Main.storyboard in Resources */,
+				BF8A0777260106EF005FBEB1 /* main.jsbundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

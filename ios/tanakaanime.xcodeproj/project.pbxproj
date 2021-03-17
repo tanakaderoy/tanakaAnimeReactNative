@@ -25,6 +25,9 @@
 		BF8A067725FFD364005FBEB1 /* VideoPlayerViewManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF8A067525FFD364005FBEB1 /* VideoPlayerViewManager.swift */; };
 		BF8A067D25FFD38B005FBEB1 /* VideoPlayerViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = BF8A067C25FFD38B005FBEB1 /* VideoPlayerViewManager.m */; };
 		BF8A067E25FFD38B005FBEB1 /* VideoPlayerViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = BF8A067C25FFD38B005FBEB1 /* VideoPlayerViewManager.m */; };
+		BF8A08952601A2DF005FBEB1 /* TanakaImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF8A08942601A2DF005FBEB1 /* TanakaImageView.swift */; };
+		BF8A089B2601A2EC005FBEB1 /* TanakaImageViewManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF8A089A2601A2EB005FBEB1 /* TanakaImageViewManager.swift */; };
+		BF8A08A12601A308005FBEB1 /* TanakaImageViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = BF8A08A02601A308005FBEB1 /* TanakaImageViewManager.m */; };
 		F0E805EC810912011CAD4E1B /* libPods-tanakaanime-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C687CBCA3BA8DC93B8410B2E /* libPods-tanakaanime-tvOS.a */; };
 /* End PBXBuildFile section */
 
@@ -72,6 +75,9 @@
 		BF8A066E25FFD340005FBEB1 /* VideoPlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPlayerView.swift; sourceTree = "<group>"; };
 		BF8A067525FFD364005FBEB1 /* VideoPlayerViewManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPlayerViewManager.swift; sourceTree = "<group>"; };
 		BF8A067C25FFD38B005FBEB1 /* VideoPlayerViewManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VideoPlayerViewManager.m; sourceTree = "<group>"; };
+		BF8A08942601A2DF005FBEB1 /* TanakaImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TanakaImageView.swift; sourceTree = "<group>"; };
+		BF8A089A2601A2EB005FBEB1 /* TanakaImageViewManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TanakaImageViewManager.swift; sourceTree = "<group>"; };
+		BF8A08A02601A308005FBEB1 /* TanakaImageViewManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TanakaImageViewManager.m; sourceTree = "<group>"; };
 		C687CBCA3BA8DC93B8410B2E /* libPods-tanakaanime-tvOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-tanakaanime-tvOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C83352BEC0E156155D3CE147 /* Pods-tanakaanime-tvOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-tanakaanime-tvOSTests.release.xcconfig"; path = "Target Support Files/Pods-tanakaanime-tvOSTests/Pods-tanakaanime-tvOSTests.release.xcconfig"; sourceTree = "<group>"; };
 		D93BCD204D5122D3ECB5588B /* Pods-tanakaanime-tvOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-tanakaanime-tvOS.debug.xcconfig"; path = "Target Support Files/Pods-tanakaanime-tvOS/Pods-tanakaanime-tvOS.debug.xcconfig"; sourceTree = "<group>"; };
@@ -139,6 +145,7 @@
 				008F07F21AC5B25A0029DE68 /* main.jsbundle */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
 				13B07FB01A68108700A75B9A /* AppDelegate.m */,
+				BF8A08932601A2CB005FBEB1 /* TanakaImageView */,
 				BF8A066E25FFD340005FBEB1 /* VideoPlayerView.swift */,
 				BF8A067525FFD364005FBEB1 /* VideoPlayerViewManager.swift */,
 				BF8A067C25FFD38B005FBEB1 /* VideoPlayerViewManager.m */,
@@ -211,6 +218,16 @@
 				C83352BEC0E156155D3CE147 /* Pods-tanakaanime-tvOSTests.release.xcconfig */,
 			);
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		BF8A08932601A2CB005FBEB1 /* TanakaImageView */ = {
+			isa = PBXGroup;
+			children = (
+				BF8A08942601A2DF005FBEB1 /* TanakaImageView.swift */,
+				BF8A089A2601A2EB005FBEB1 /* TanakaImageViewManager.swift */,
+				BF8A08A02601A308005FBEB1 /* TanakaImageViewManager.m */,
+			);
+			name = TanakaImageView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -645,8 +662,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BF8A08952601A2DF005FBEB1 /* TanakaImageView.swift in Sources */,
 				13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */,
+				BF8A089B2601A2EC005FBEB1 /* TanakaImageViewManager.swift in Sources */,
 				BF8A067625FFD364005FBEB1 /* VideoPlayerViewManager.swift in Sources */,
+				BF8A08A12601A308005FBEB1 /* TanakaImageViewManager.m in Sources */,
 				13B07FC11A68108700A75B9A /* main.m in Sources */,
 				BF8A066F25FFD340005FBEB1 /* VideoPlayerView.swift in Sources */,
 				BF8A067D25FFD38B005FBEB1 /* VideoPlayerViewManager.m in Sources */,
@@ -785,6 +805,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = J3NVQ5AFC2;
+				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = arm64;
 				INFOPLIST_FILE = tanakaanime/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

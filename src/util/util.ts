@@ -30,6 +30,11 @@ export interface NativeVideoPlayerProps extends ViewProps {
   thumbnailUrl: string;
 }
 
+export interface TanakaImageViewProps extends ViewProps {
+  url: string;
+  cornerRadius: number;
+}
+
 export interface HudlPlayerProps extends ViewProps {
   // Props
   onPlayerUpdate: (e: any) => void;

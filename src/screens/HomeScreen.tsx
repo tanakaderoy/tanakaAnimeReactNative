@@ -21,12 +21,18 @@ const HomeScreen: React.FC<HomeScreenProps> = ({navigation}) => {
             title="Reload"
             onPress={() => {
               setShows([]);
-              const unsub = api.getLatestShows().subscribe(shows => {
-                setShows(shows);
-                unsub.unsubscribe();
-              });
+              const unsub = api.getLatestShows().subscribe(
+                shows => {
+                  setShows(shows);
+                  unsub.unsubscribe();
+                },
+                err => {
+                  console.error(err);
+                },
+              );
             }}
             iconRight
+            style={{paddingHorizontal: 24}}
             icon={<Icon name="refresh" />}
           />
         );
@@ -35,9 +41,14 @@ const HomeScreen: React.FC<HomeScreenProps> = ({navigation}) => {
   }, []);
 
   useEffect(() => {
-    const unsub = api.getLatestShows().subscribe(shows => {
-      setShows(shows);
-    });
+    const unsub = api.getLatestShows().subscribe(
+      shows => {
+        setShows(shows);
+      },
+      err => {
+        console.error(err);
+      },
+    );
 
     return () => {
       unsub.unsubscribe();

@@ -42,7 +42,7 @@ const searchShow = (query: string): Observable<LatestShow[]> => {
   return get<SearchResult[]>('/shows/search', {query}).pipe(
     map(res => {
       return res.map(result => {
-        let latestShow: LatestShow = {
+        const latestShow: LatestShow = {
           title: result.title,
           image: result.poster,
           currentEp: '',
