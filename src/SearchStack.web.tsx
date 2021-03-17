@@ -1,10 +1,9 @@
 import {createStackNavigator} from '@react-navigation/stack';
-import React from 'react';
-import {Platform} from 'react-native';
+import * as React from 'react';
+import Icon from 'react-native-vector-icons/Ionicons';
 import {LatestShow} from './models/LatestShow';
 import SearchScreen from './screens/SearchScreen';
-import ShowDetail from './screens/ShowDetailScreen';
-import ShowDetailDesktop from './screens/ShowDetailScreenMacOs';
+import ShowDetail from './screens/ShowDetailScreen.web';
 
 export type SearchStackParamList = {
   Search: undefined;
@@ -14,15 +13,13 @@ export type SearchStackParamList = {
 const Stack = createStackNavigator<SearchStackParamList>();
 
 export const SearchStack: React.FC = () => (
-  <Stack.Navigator>
+  <Stack.Navigator
+    screenOptions={{
+      headerBackImage: () => {
+        return <Icon name="arrow-back" size={30} />;
+      },
+    }}>
     <Stack.Screen name="Search" component={SearchScreen} />
-    <Stack.Screen
-      name="Detail"
-      component={
-        Platform.OS == 'macos' || Platform.OS == 'windows'
-          ? ShowDetailDesktop
-          : ShowDetail
-      }
-    />
+    <Stack.Screen name="Detail" component={ShowDetail} />
   </Stack.Navigator>
 );

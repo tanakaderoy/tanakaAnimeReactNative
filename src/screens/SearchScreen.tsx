@@ -1,7 +1,8 @@
 import {StackScreenProps} from '@react-navigation/stack';
 import React, {useEffect, useState} from 'react';
 import {FlatList, StyleSheet, Text, TextInput, TouchableOpacity, View} from 'react-native';
-import {Button, Divider, Icon} from 'react-native-elements';
+import {Button, Divider} from 'react-native-elements';
+import Icon from 'react-native-vector-icons/Ionicons'
 import { Subscription } from 'rxjs';
 import api from '../api/api';
 import ShowItem from '../components/ShowItem';
@@ -45,6 +46,7 @@ setShows(results)
           placeholderTextColor="black"
           value={query}
           onChangeText={text => setQuery(text)}
+          onSubmitEditing={peformSearch}
           onEndEditing={peformSearch}
           style={{
             height: 50,
@@ -57,7 +59,7 @@ setShows(results)
         <Button
           onPress={peformSearch}
           type="clear"
-          icon={<Icon name="search" />}
+          icon={<Icon name="search" size={20} />}
         />
       </View>
       <FlatList
