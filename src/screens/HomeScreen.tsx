@@ -7,6 +7,8 @@ import api from '../api/api';
 import ShowItem from '../components/ShowItem';
 import {HomeStackParamList} from '../HomeStack';
 import {LatestShow} from '../models/LatestShow';
+import firebase from 'firebase/app';
+import ObfuscationUtil from '../util/ObfuscationUtil';
 
 interface HomeScreenProps extends StackScreenProps<HomeStackParamList> {}
 
@@ -14,6 +16,8 @@ const HomeScreen: React.FC<HomeScreenProps> = ({navigation}) => {
   const [shows, setShows] = useState<LatestShow[]>([]);
 
   useEffect(() => {
+    const anlytics = firebase.analytics();
+    anlytics.logEvent('page_view', {name: 'HomeScreen'});
     navigation.setOptions({
       headerRight: function HeaderRight() {
         return (
@@ -80,5 +84,6 @@ export default HomeScreen;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    // backgroundColor: '#26001b',
   },
 });

@@ -42,41 +42,43 @@ const App: () => ReactNode = () => {
   return (
     <VideoPlayingProvider>
       <SafeAreaProvider>
-        <NavigationContainer>
-          <Tab.Navigator
-            screenOptions={({route}) => ({
-              tabBarIcon: ({focused, color, size}) => {
-                let iconName = '';
-                //Ionicons
+        <View style={{flex: 1}}>
+          <NavigationContainer>
+            <Tab.Navigator
+              screenOptions={({route}) => ({
+                tabBarIcon: ({focused, color, size}) => {
+                  let iconName = '';
+                  //Ionicons
 
-                switch (route.name) {
-                  case 'Home':
-                    iconName = focused ? 'home' : 'home-outline';
-                    break;
-                  case 'Search':
-                    iconName = focused
-                      ? 'search-circle'
-                      : 'search-circle-outline';
-                    break;
-                  case 'Settings':
-                    iconName = focused ? 'settings' : 'settings-outline';
-                    break;
-                  default:
-                    break;
-                }
+                  switch (route.name) {
+                    case 'Home':
+                      iconName = focused ? 'home' : 'home-outline';
+                      break;
+                    case 'Search':
+                      iconName = focused
+                        ? 'search-circle'
+                        : 'search-circle-outline';
+                      break;
+                    case 'Settings':
+                      iconName = focused ? 'settings' : 'settings-outline';
+                      break;
+                    default:
+                      break;
+                  }
 
-                return <Icon name={iconName} size={size} color={color} />;
-              },
-            })}
-            tabBarOptions={{
-              activeTintColor: 'tomato',
-              inactiveTintColor: 'gray',
-            }}>
-            <Tab.Screen name="Home" component={HomeStack} options={{}} />
-            <Tab.Screen name="Search" component={SearchStack} options={{}} />
-            <Tab.Screen name="Settings" component={SettingsScreen} />
-          </Tab.Navigator>
-        </NavigationContainer>
+                  return <Icon name={iconName} size={size} color={color} />;
+                },
+              })}
+              tabBarOptions={{
+                activeTintColor: 'tomato',
+                inactiveTintColor: 'gray',
+              }}>
+              <Tab.Screen name="Home" component={HomeStack} options={{}} />
+              <Tab.Screen name="Search" component={SearchStack} options={{}} />
+              <Tab.Screen name="Settings" component={SettingsScreen} />
+            </Tab.Navigator>
+          </NavigationContainer>
+        </View>
       </SafeAreaProvider>
     </VideoPlayingProvider>
   );

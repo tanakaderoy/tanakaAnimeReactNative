@@ -1,4 +1,5 @@
 import {StackScreenProps} from '@react-navigation/stack';
+import firebase from 'firebase/app';
 import React, {useEffect, useState} from 'react';
 import {FlatList, StyleSheet, Text, TextInput, TouchableOpacity, View} from 'react-native';
 import {Button, Divider} from 'react-native-elements';
@@ -15,9 +16,16 @@ const SearchScreen: React.FC<SearchScreenProps> = ({navigation}) => {
   const [query, setQuery] = useState('');
   const [shows,setShows] = useState<LatestShow[]>([])
   let sub:Subscription|undefined = undefined
+  const anlytics = firebase.analytics();
+
+  useEffect(()=>{
+    anlytics.setCurrentScreen('SearchScreen')
+    anlytics.logEvent('page_view', {name: 'SearchScreen'});
+  },[])
 
   const peformSearch = () => {
    if (query.length>0){
+     anlytics.logEvent('search', {query})
     sub = api.searchShow(query).subscribe(results=>{
 setShows(results)
      })

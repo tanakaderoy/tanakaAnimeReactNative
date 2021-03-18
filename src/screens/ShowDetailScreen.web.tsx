@@ -19,6 +19,7 @@ import EpisodeItem from '../components/EpisodeItem';
 import {HomeStackParamList} from '../HomeStack';
 import {useOrientation} from '../hooks/useOrientation';
 import {VideoPlayingContext} from '../context/VideoPlayingProvider';
+import firebase from 'firebase/app'
 
 interface ShowDetailProps
   extends StackScreenProps<HomeStackParamList, 'Detail'> {}
@@ -41,6 +42,7 @@ const ShowDetail: React.FC<ShowDetailProps> = ({
   route: {params},
   navigation,
 }) => {
+    const anlytics = firebase.analytics();
   const [episodes, setEpisodes] = useState<Episode[]>([]);
   const [watchUrl, setWatchUrl] = useState('');
   const [vid, setVid] = useState<string | undefined>(undefined);
@@ -55,6 +57,8 @@ const ShowDetail: React.FC<ShowDetailProps> = ({
 
   const {show} = params;
   useEffect(() => {
+      anlytics.setCurrentScreen('ShowDetailScreen')
+      anlytics.logEvent('watching',{show:show.title})
     const sub = api.getEpisodes<Episode[]>(show.title).subscribe(res => {
       setEpisodes(res);
 
@@ -87,6 +91,8 @@ const ShowDetail: React.FC<ShowDetailProps> = ({
   }, [watchUrl]);
 
   useEffect(() => {
+    anlytics.logEvent('video_view', {name: `${show.title}: ${currentEpisode?.subtitle ?? ''}`});
+
     navigation.setOptions({
       title: `${show.title}: ${currentEpisode?.subtitle ?? ''}`,
     });
@@ -128,6 +134,7 @@ const ShowDetail: React.FC<ShowDetailProps> = ({
                   if (item.link != watchUrl) {
                     setVid(undefined);
                     setWatchUrl(item.link);
+                    setCurrentEpisode(item)
                   }
                 }}>
                 <EpisodeItem data={item} />

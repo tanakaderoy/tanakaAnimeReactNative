@@ -13,6 +13,7 @@ const compileNodeModules = [
   'react-native-vector-icons',
   'react-native-ratings',
   'react-native-elements',
+  'firebase',
 ].map(moduleName => path.resolve(appDirectory, `node_modules/${moduleName}`));
 
 const babelLoaderConfiguration = {

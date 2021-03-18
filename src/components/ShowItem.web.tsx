@@ -19,7 +19,9 @@ const ShowItem: React.FC<ShowItemProps> = ({show}) => {
         />
       }
       <View style={styles.infoContainer}>
-        <Text h3>{show.title} </Text>
+        <Text style={styles.text} h3>
+          {show.title}
+        </Text>
         <Text>{show.currentEp}</Text>
       </View>
     </View>
@@ -34,7 +36,11 @@ const styles = StyleSheet.create({
     margin: 16,
     flex: 1,
     backgroundColor: '#fff',
+    shadowOffset: {width: 5, height: 5},
+    shadowColor: 'gray',
+    shadowOpacity: 0.3,
   },
+  //   text: {color: 'white'},
   infoContainer: {
     flexDirection: 'column',
     padding: 16,
