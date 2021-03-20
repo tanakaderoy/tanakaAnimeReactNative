@@ -1,4 +1,5 @@
 import {StackScreenProps} from '@react-navigation/stack';
+import {BottomTabNavigationOptions, BottomTabNavigationProp} from '@react-navigation/bottom-tabs'
 import React, {useContext, useEffect, useRef, useState} from 'react';
 import {
   Dimensions,
@@ -19,6 +20,11 @@ import {useOrientation} from '../hooks/useOrientation';
 import {VideoPlayingContext} from '../context/VideoPlayingProvider';
 import VideoPlayer from '../components/VideoPlayer';
 import TanakaImageView from '../components/TanakaImageView';
+import { Colors } from '../util/color';
+import useDeviceType from '../hooks/useDeviceType';
+import useIosOrientation from '../hooks/useIosOrientation';
+import { TabParamList } from '../../App';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 interface ShowDetailProps
   extends StackScreenProps<HomeStackParamList, 'Detail'> {}
@@ -37,14 +43,15 @@ const ShowDetail: React.FC<ShowDetailProps> = ({
 
 
   const orientation = useOrientation();
-  const vidHeight =
-    orientation == 'PORTRAIT'
-      ? Dimensions.get('screen').height * 0.35
-      : Dimensions.get('screen').height;
+  const vidHeight = Dimensions.get('screen').height * 0.35
+     
 
   const {show} = params;
   useEffect(() => {
+    let isMounted = true
     const sub = api.getEpisodes<Episode[]>(show.title).subscribe(res => {
+      
+      if(isMounted){
       setEpisodes(res);
 
       setWatchUrl(
@@ -52,6 +59,8 @@ const ShowDetail: React.FC<ShowDetailProps> = ({
       );
 
       setCurrentEpisode( show.currentEpURL != '' ? {title: show.title, subtitle:show.currentEp, link:show.currentEpURL}:res[res.length - 1])
+      }
+
     },(err => {
       console.error(err);
       
@@ -59,12 +68,16 @@ const ShowDetail: React.FC<ShowDetailProps> = ({
 
     return () => {
       sub.unsubscribe();
+      isMounted = false;
     };
   }, []);
 
   useEffect(() => {
+    let isMounted = true;
     const sub = api.getVideoUrl<VidRes>(watchUrl).subscribe(res => {
+      if(isMounted){
       setVid(res.video);
+      }
     },(err => {
       console.error(err);
       
@@ -72,15 +85,42 @@ const ShowDetail: React.FC<ShowDetailProps> = ({
 
     return () => {
       sub.unsubscribe();
+      isMounted = false
     };
   }, [watchUrl]);
 
+  const o = useIosOrientation()
+  const devType = useDeviceType()
   useEffect(() => {
+    const parent = navigation.dangerouslyGetParent() 
+    parent?.setOptions({
+      tabBarVisible: orientation == 'PORTRAIT'
+    })
     navigation.setOptions({
-      headerShown: orientation == 'PORTRAIT',
+      headerShown: (orientation == 'PORTRAIT') || devType == 'pad',
       title: `${show.title}: ${currentEpisode?.subtitle ?? ''}`,
     });
-  }, [orientation, currentEpisode]);
+  }, [orientation,o, currentEpisode]);
+
+  useEffect(()=>{
+    let isMounted = true
+    if(isMounted){
+    setIsPlaying(true)
+    
+    navigation.addListener('blur',()=>{
+      setIsPlaying(false)
+    })
+  }
+  
+
+    return () => {
+      isMounted = false;
+    }
+  },[setIsPlaying])
+
+
+
+
   function RenderVideo(): React.ReactElement {
     return (
       <>
@@ -95,12 +135,17 @@ const ShowDetail: React.FC<ShowDetailProps> = ({
         )}
       </>
     );
-  }
+  }  
+
+
+  if(devType == 'pad'){
 
   return (
     <View
-      style={[styles.container, {margin: orientation == 'PORTRAIT' ? 2 : 0}]}>
-      <StatusBar hidden={orientation == 'LANDSCAPE'} />
+      style={[styles.container, {padding: orientation == 'PORTRAIT' ? 2 : 0}]}>
+      <StatusBar hidden={(orientation == 'LANDSCAPE') || (devType == 'pad' && o == 'landscape')} />
+      <View style={[(styles.parent),{flexDirection: o=='landscape' ? 'row' : 'column'}]}>
+      <View>
       <View style={[styles.videoContainer, {height: vidHeight}]}>
         {vid && (
           <Video
@@ -110,18 +155,12 @@ const ShowDetail: React.FC<ShowDetailProps> = ({
             source={{uri: vid}}
             style={styles.video}
             controls
-            onVideoEnd={() => {
-              setIsPlaying(false);
-            }}
-            onVideoLoadStart={() => {
-              setIsPlaying(true);
-            }}
           />
         )}
         {/* {vid && Platform.OS == 'ios' && <RenderVideo />} */}
       </View>
       <View style={styles.infoContainer}>
-        <Text h3>{show.title}</Text>
+        <Text style={styles.text} h3>{show.title}</Text>
         {isIos ? (
         <View style={[styles.poster, {backgroundColor:'black'}]}>
           <TanakaImageView
@@ -131,6 +170,7 @@ const ShowDetail: React.FC<ShowDetailProps> = ({
           />
         </View>
       ):<Image style={styles.poster} source={{uri: show.image}} />}
+      </View>
       </View>
       <View style={styles.episodeListContainer}>
         <FlatList
@@ -143,6 +183,7 @@ const ShowDetail: React.FC<ShowDetailProps> = ({
                   if (item.link != watchUrl) {
                     setVid(undefined);
                     setWatchUrl(item.link);
+                    setCurrentEpisode(item)
                   }
                 }}>
                 <EpisodeItem data={item} />
@@ -151,20 +192,81 @@ const ShowDetail: React.FC<ShowDetailProps> = ({
           }}
         />
       </View>
+      </View>
     </View>
   );
+        }
+        const screen = Dimensions.get('screen')
+const phoneVidHeight = orientation == 'LANDSCAPE' ? screen.height: screen.height * 0.35
+        return (<SafeAreaView
+        style={[styles.container, {padding: orientation == 'PORTRAIT' ? 2 : 0}]}>
+        <StatusBar hidden={orientation == 'LANDSCAPE'} />
+        <View style={[styles.videoContainer, {height: phoneVidHeight}]}>
+          {vid && (
+            <Video
+              ref={videoPlayer}
+              resizeMode="cover"
+              posterResizeMode="cover"
+              source={{uri: vid}}
+              style={styles.video}
+              controls
+            />
+          )}
+          {/* {vid && Platform.OS == 'ios' && <RenderVideo />} */}
+        </View>
+        <View style={styles.infoContainer}>
+          <Text style={styles.text} h3>{show.title}</Text>
+          {isIos ? (
+          <View style={[styles.poster, {backgroundColor:'black'}]}>
+            <TanakaImageView
+              style={styles.poster}
+              cornerRadius={Platform.OS == 'android' || Platform.OS =='ios' ? (25) : 50}
+              url={show.image}
+            />
+          </View>
+        ):<Image style={styles.poster} source={{uri: show.image}} />}
+        </View>
+        <View style={styles.episodeListContainer}>
+          <FlatList
+            data={episodes}
+            keyExtractor={it => it.link + it.title}
+            renderItem={({item, index}) => {
+              return (
+                <TouchableOpacity
+                  onPress={() => {
+                    if (item.link != watchUrl) {
+                      setVid(undefined);
+                      setWatchUrl(item.link);
+                      setCurrentEpisode(item)
+                    }
+                  }}>
+                  <EpisodeItem data={item} />
+                </TouchableOpacity>
+              );
+            }}
+          />
+        </View>
+      </SafeAreaView>
+    );
 };
 
 export default ShowDetail;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor: Colors.dark
   },
+  text:{color:Colors.text},
   videoContainer: {
     width: '100%',
     // aspectRatio: 16 / 9,
 
     backgroundColor: '#000',
+  },
+  parent: {
+    flex: 1,
+    justifyContent: 'space-around',
+    backgroundColor: Colors.dark,
   },
   infoContainer: {
     flexDirection: 'row',

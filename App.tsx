@@ -9,22 +9,22 @@
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {NavigationContainer} from '@react-navigation/native';
 import React, {ReactNode, useContext} from 'react';
-import {StyleSheet} from 'react-native';
+import {StatusBar, StyleSheet} from 'react-native';
 import {SafeAreaProvider} from 'react-native-safe-area-context';
 import Icon from 'react-native-vector-icons/Ionicons';
-
-import {Colors} from 'react-native/Libraries/NewAppScreen';
 import VideoPlayingProvider, {
   VideoPlayingContext,
 } from './src/context/VideoPlayingProvider';
 import {HomeStack} from './src/HomeStack';
+import useDeviceType from './src/hooks/useDeviceType';
 import {useOrientation} from './src/hooks/useOrientation';
 import SettingsScreen from './src/screens/SettingsScreen';
 import {SearchStack} from './src/SearchStack';
+import {Colors} from './src/util/color';
 
 const Tab = createBottomTabNavigator<TabParamList>();
 
-type TabParamList = {
+export type TabParamList = {
   Home: undefined;
   Search: undefined;
   Settings: undefined;
@@ -34,11 +34,12 @@ const App: () => ReactNode = () => {
   const orientation = useOrientation();
   const {videoPlaying, setIsPlaying} = useContext(VideoPlayingContext);
   console.log(orientation);
-
+  const devType = useDeviceType();
   return (
     <VideoPlayingProvider>
       <SafeAreaProvider>
         <NavigationContainer>
+          <StatusBar barStyle="light-content" />
           <Tab.Navigator
             screenOptions={({route}) => ({
               tabBarIcon: ({focused, color, size}) => {
@@ -65,21 +66,28 @@ const App: () => ReactNode = () => {
               },
             })}
             tabBarOptions={{
-              activeTintColor: 'tomato',
+              activeTintColor: Colors.accent,
               inactiveTintColor: 'gray',
+              style: {backgroundColor: Colors.primary},
             }}>
             <Tab.Screen
               name="Home"
               component={HomeStack}
               options={{
-                tabBarVisible: orientation == 'PORTRAIT' && !videoPlaying,
+                tabBarVisible:
+                  orientation == 'PORTRAIT' ||
+                  (orientation == 'LANDSCAPE' && !videoPlaying) ||
+                  devType == 'pad',
               }}
             />
             <Tab.Screen
               name="Search"
               component={SearchStack}
               options={{
-                tabBarVisible: orientation == 'PORTRAIT' && !videoPlaying,
+                tabBarVisible:
+                  orientation == 'PORTRAIT' ||
+                  (orientation == 'LANDSCAPE' && !videoPlaying) ||
+                  devType == 'pad',
               }}
             />
             <Tab.Screen name="Settings" component={SettingsScreen} />

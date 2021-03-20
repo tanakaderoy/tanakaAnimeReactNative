@@ -19,6 +19,7 @@ import Video from 'react-native-video';
 import {useOrientation} from '../hooks/useOrientation';
 import {VideoPlayingContext} from '../context/VideoPlayingProvider';
 import VideoPlayer from '../components/VideoPlayer';
+import {Colors} from '../util/color';
 
 interface ShowDetailDesktopProps
   extends StackScreenProps<HomeStackParamList, 'Detail'> {}
@@ -34,20 +35,24 @@ const ShowDetailDesktop: React.FC<ShowDetailDesktopProps> = ({
   const {videoPlaying, setIsPlaying} = useContext(VideoPlayingContext);
 
   const orientation = useOrientation();
-  const vidHeight =
-    orientation == 'PORTRAIT'
-      ? Dimensions.get('screen').height * 0.35
-      : Dimensions.get('screen').height;
+  const vidHeight = Dimensions.get('screen').height * 0.35;
 
   const {show} = params;
   useEffect(() => {
-    const sub = api.getEpisodes<Episode[]>(show.title).subscribe(res => {
-      setEpisodes(res);
+    const sub = api.getEpisodes<Episode[]>(show.title).subscribe(
+      res => {
+        setEpisodes(res);
 
-      setWatchUrl(
-        show.currentEpURL != '' ? show.currentEpURL : res[res.length - 1].link,
-      );
-    });
+        setWatchUrl(
+          show.currentEpURL != ''
+            ? show.currentEpURL
+            : res[res.length - 1].link,
+        );
+      },
+      err => {
+        console.error(err);
+      },
+    );
 
     return () => {
       sub.unsubscribe();
@@ -55,9 +60,14 @@ const ShowDetailDesktop: React.FC<ShowDetailDesktopProps> = ({
   }, []);
 
   useEffect(() => {
-    const sub = api.getVideoUrl<VidRes>(watchUrl).subscribe(res => {
-      setVid(res.video);
-    });
+    const sub = api.getVideoUrl<VidRes>(watchUrl).subscribe(
+      res => {
+        setVid(res.video);
+      },
+      err => {
+        console.error(err);
+      },
+    );
 
     return () => {
       sub.unsubscribe();
@@ -103,8 +113,7 @@ const ShowDetailDesktop: React.FC<ShowDetailDesktopProps> = ({
   }
 
   return (
-    <View
-      style={[styles.container, {margin: orientation == 'PORTRAIT' ? 24 : 0}]}>
+    <View style={[styles.container, {padding: 24}]}>
       <StatusBar hidden={orientation == 'LANDSCAPE'} />
       <View style={styles.parent}>
         <View>
@@ -112,7 +121,9 @@ const ShowDetailDesktop: React.FC<ShowDetailDesktopProps> = ({
             <RenderVideo />
           </View>
           <View style={styles.infoContainer}>
-            <Text h3>{show.title}</Text>
+            <Text style={styles.text} h3>
+              {show.title}
+            </Text>
             <Image style={styles.poster} source={{uri: show.image}} />
           </View>
         </View>
@@ -144,11 +155,16 @@ export default ShowDetailDesktop;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor: Colors.dark,
   },
   parent: {
     flex: 1,
     flexDirection: 'row',
     justifyContent: 'space-around',
+    backgroundColor: Colors.dark,
+  },
+  text: {
+    color: Colors.text,
   },
   videoContainer: {
     // width: Dimensions.get('screen').width * 0.35,

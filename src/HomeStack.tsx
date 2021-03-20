@@ -6,6 +6,7 @@ import ShowDetail from './screens/ShowDetailScreen';
 import {SearchResult} from './models/SearchResult';
 import {Platform} from 'react-native';
 import ShowDetailDesktop from './screens/ShowDetailScreenMacOs';
+import {Colors} from './util/color';
 
 export type HomeStackParamList = {
   Home: undefined;
@@ -15,7 +16,12 @@ export type HomeStackParamList = {
 const Stack = createStackNavigator<HomeStackParamList>();
 
 export const HomeStack: React.FC = () => (
-  <Stack.Navigator>
+  <Stack.Navigator
+    screenOptions={{
+      headerStyle: {backgroundColor: Colors.primary},
+      headerTintColor: Colors.text,
+      headerBackTitle: 'Back',
+    }}>
     <Stack.Screen name="Home" component={HomeScreen} />
     <Stack.Screen
       name="Detail"

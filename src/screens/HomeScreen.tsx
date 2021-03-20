@@ -1,12 +1,19 @@
 import {StackScreenProps} from '@react-navigation/stack';
 import React, {useEffect, useState} from 'react';
-import {FlatList, StyleSheet, TouchableOpacity, View} from 'react-native';
+import {
+  FlatList,
+  Platform,
+  StyleSheet,
+  TouchableOpacity,
+  View,
+} from 'react-native';
 import {Button} from 'react-native-elements';
 import Icon from 'react-native-vector-icons/Ionicons';
 import api from '../api/api';
 import ShowItem from '../components/ShowItem';
 import {HomeStackParamList} from '../HomeStack';
 import {LatestShow} from '../models/LatestShow';
+import {Colors} from '../util/color';
 
 interface HomeScreenProps extends StackScreenProps<HomeStackParamList> {}
 
@@ -14,6 +21,7 @@ const HomeScreen: React.FC<HomeScreenProps> = ({navigation}) => {
   const [shows, setShows] = useState<LatestShow[]>([]);
 
   useEffect(() => {
+    let isMounted = true;
     navigation.setOptions({
       headerRight: function HeaderRight() {
         return (
@@ -23,7 +31,9 @@ const HomeScreen: React.FC<HomeScreenProps> = ({navigation}) => {
               setShows([]);
               const unsub = api.getLatestShows().subscribe(
                 shows => {
-                  setShows(shows);
+                  if (isMounted) {
+                    setShows(shows);
+                  }
                   unsub.unsubscribe();
                 },
                 err => {
@@ -38,12 +48,17 @@ const HomeScreen: React.FC<HomeScreenProps> = ({navigation}) => {
         );
       },
     });
+    return () => {
+      isMounted = false;
+    };
   }, []);
-
   useEffect(() => {
+    let isMounted = true;
     const unsub = api.getLatestShows().subscribe(
       shows => {
-        setShows(shows);
+        if (isMounted) {
+          setShows(shows);
+        }
       },
       err => {
         console.error(err);
@@ -51,6 +66,7 @@ const HomeScreen: React.FC<HomeScreenProps> = ({navigation}) => {
     );
 
     return () => {
+      isMounted = false;
       unsub.unsubscribe();
     };
   }, []);
@@ -80,5 +96,6 @@ export default HomeScreen;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor: Colors.dark,
   },
 });

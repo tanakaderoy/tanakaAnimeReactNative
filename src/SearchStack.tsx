@@ -6,6 +6,7 @@ import {SearchResult} from './models/SearchResult';
 import SearchScreen from './screens/SearchScreen';
 import ShowDetail from './screens/ShowDetailScreen';
 import ShowDetailDesktop from './screens/ShowDetailScreenMacOs';
+import {Colors} from './util/color';
 
 export type SearchStackParamList = {
   Search: undefined;
@@ -15,7 +16,12 @@ export type SearchStackParamList = {
 const Stack = createStackNavigator<SearchStackParamList>();
 
 export const SearchStack: React.FC = () => (
-  <Stack.Navigator>
+  <Stack.Navigator
+    screenOptions={{
+      headerStyle: {backgroundColor: Colors.primary},
+      headerTintColor: Colors.text,
+      headerBackTitle: 'Back',
+    }}>
     <Stack.Screen name="Search" component={SearchScreen} />
     <Stack.Screen
       name="Detail"

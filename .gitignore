@@ -58,3 +58,6 @@ buck-out/
 
 # CocoaPods
 /ios/Pods/
+dist/tanakaanime.bundle.js
+dist/tanakaanime.bundle.js.LICENSE.txt
+dist/index.html
