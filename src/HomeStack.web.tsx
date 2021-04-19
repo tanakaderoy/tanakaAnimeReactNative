@@ -19,7 +19,7 @@ export const HomeStack: React.FC = () => (
       headerStyle: {backgroundColor: Colors.primary},
       headerTintColor: Colors.text,
       headerBackImage: () => {
-        return <Icon name="arrow-back" size={30} />;
+        return <Icon name="arrow-back" size={30} color={Colors.accent} />;
       },
     }}>
     <Stack.Screen name="Home" component={HomeScreen} />
