@@ -1,14 +1,15 @@
-import {StackScreenProps} from '@react-navigation/stack';
+import { StackScreenProps } from '@react-navigation/stack';
 import firebase from 'firebase/app';
-import React, {useEffect, useState} from 'react';
-import {FlatList, StyleSheet, Text, TextInput, TouchableOpacity, View} from 'react-native';
-import {Button, Divider} from 'react-native-elements';
-import Icon from 'react-native-vector-icons/Ionicons'
+import React, { useEffect, useState } from 'react';
+import { FlatList, StyleSheet, TextInput, TouchableOpacity, View } from 'react-native';
+import { Button, Divider } from 'react-native-elements';
+import Icon from 'react-native-vector-icons/Ionicons';
 import { Subscription } from 'rxjs';
 import api from '../api/api';
 import ShowItem from '../components/ShowItem';
 import { LatestShow } from '../models/LatestShow';
-import {SearchStackParamList} from '../SearchStack';
+import { SearchStackParamList } from '../SearchStack';
+import { Colors } from '../util/color';
 
 interface SearchScreenProps extends StackScreenProps<SearchStackParamList> {}
 
@@ -43,15 +44,12 @@ setShows(results)
 
   return (
     <View
-      style={{
-        flex: 1,
-        marginHorizontal: 16,
-      }}>
+    style={styles.container}>
       <Divider style={{height: 1, backgroundColor: ' #e1e8ee'}} />
       <View style={{flexDirection: 'row'}}>
         <TextInput
           placeholder="...Enter Show Name"
-          placeholderTextColor="black"
+          placeholderTextColor="gray"
           value={query}
           onChangeText={text => setQuery(text)}
           onSubmitEditing={peformSearch}
@@ -61,13 +59,15 @@ setShows(results)
             flex: 1,
             padding: 8,
             borderWidth: 1,
-            color: 'black'
+            backgroundColor: Colors.secondaryDark,
+            color: 'white',
+            borderColor: Colors.accent
           }}
         />
         <Button
           onPress={peformSearch}
           type="clear"
-          icon={<Icon name="search" size={20} />}
+          icon={<Icon name="search" color={Colors.accent} />}
         />
       </View>
       <FlatList
@@ -90,4 +90,9 @@ setShows(results)
 
 export default SearchScreen;
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  container:{flex:1,
+
+  backgroundColor: Colors.dark},
+  text:{color:Colors.text}
+});

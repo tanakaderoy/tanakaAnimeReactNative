@@ -1,25 +1,25 @@
 /* eslint-disable @typescript-eslint/no-unsafe-return */
 /* eslint-disable @typescript-eslint/no-unsafe-call */
-import {StackScreenProps} from '@react-navigation/stack';
-import React, {useContext, useEffect, useRef, useState} from 'react';
+import { StackScreenProps } from '@react-navigation/stack';
+import firebase from 'firebase/app';
+import React, { useContext, useEffect, useState } from 'react';
 import {
   Dimensions,
   FlatList,
   Platform,
-  StatusBar,
+
   StyleSheet,
   TouchableOpacity,
-  View,
+  View
 } from 'react-native';
+import { Text } from 'react-native-elements';
+import { Image } from 'react-native-elements/dist/image/Image';
 import { createElement } from "react-native-web";
-import {Text} from 'react-native-elements';
-import {Image} from 'react-native-elements/dist/image/Image';
 import api from '../api/api';
 import EpisodeItem from '../components/EpisodeItem';
-import {HomeStackParamList} from '../HomeStack';
-import {useOrientation} from '../hooks/useOrientation';
-import {VideoPlayingContext} from '../context/VideoPlayingProvider';
-import firebase from 'firebase/app'
+import { VideoPlayingContext } from '../context/VideoPlayingProvider';
+import { HomeStackParamList } from '../HomeStack';
+import { Colors } from '../util/color';
 
 interface ShowDetailProps
   extends StackScreenProps<HomeStackParamList, 'Detail'> {}
@@ -112,7 +112,7 @@ const ShowDetail: React.FC<ShowDetailProps> = ({
 
   return (
     <View
-      style={[styles.container, {margin: 2}]}>
+      style={[styles.container]}>
       <View style={[styles.videoContainer, {height: vidHeight}]}>
 
         {vid && (
@@ -120,7 +120,7 @@ const ShowDetail: React.FC<ShowDetailProps> = ({
           
       </View>
       <View style={styles.infoContainer}>
-        <Text h3>{show.title}</Text>
+        <Text style={styles.text} h3>{show.title}</Text>
         <Image style={styles.poster} source={{uri: show.image}} />
       </View>
       <View style={styles.episodeListContainer}>
@@ -151,10 +151,13 @@ export default ShowDetail;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor: Colors.dark,
+    padding:8
+
   },
   videoContainer: {
     width: '100%',
-    // aspectRatio: 16 / 9,
+    aspectRatio: 16 / 9,
 
     backgroundColor: '#000',
   },
@@ -188,6 +191,9 @@ const styles = StyleSheet.create({
   },
   episodeListContainer: {
     flex: 1,
+  },
+  text:{
+    color: Colors.text
   },
 });
 

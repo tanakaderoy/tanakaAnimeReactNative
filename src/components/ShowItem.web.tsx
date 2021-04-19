@@ -1,15 +1,15 @@
 import React from 'react';
-import {Platform, StyleSheet, View} from 'react-native';
-import {Text, Image} from 'react-native-elements';
-import {LatestShow} from '../models/LatestShow';
-// import TanakaImageView from './TanakaImageView';
+import { StyleSheet, View } from 'react-native';
+import { Image, Text } from 'react-native-elements';
+import { LatestShow } from '../models/LatestShow';
+import { Colors } from '../util/color';
 
 interface ShowItemProps {
   show: LatestShow;
 }
 
 const ShowItem: React.FC<ShowItemProps> = ({show}) => {
-  const isIos = Platform.OS == 'ios';
+
   return (
     <View style={styles.container}>
       {
@@ -22,7 +22,7 @@ const ShowItem: React.FC<ShowItemProps> = ({show}) => {
         <Text style={styles.text} h3>
           {show.title}
         </Text>
-        <Text>{show.currentEp}</Text>
+        <Text style={styles.text}>{show.currentEp}</Text>
       </View>
     </View>
   );
@@ -35,16 +35,19 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     margin: 16,
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: Colors.secondaryDark,
+    elevation: 4,
     shadowOffset: {width: 5, height: 5},
-    shadowColor: 'gray',
-    shadowOpacity: 0.3,
+    shadowColor: Colors.accent,
+    shadowOpacity: 0.4,
   },
-  //   text: {color: 'white'},
   infoContainer: {
     flexDirection: 'column',
     padding: 16,
     flex: 1,
+  },
+  text: {
+    color: Colors.text,
   },
   poster: {
     height: 250,

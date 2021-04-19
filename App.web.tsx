@@ -6,24 +6,22 @@
  * @flow strict-local
  */
 
-import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import {NavigationContainer} from '@react-navigation/native';
-import {createStackNavigator} from '@react-navigation/stack';
-import React, {ReactNode, useContext} from 'react';
-import {StyleSheet, Text, View} from 'react-native';
-import {SafeAreaProvider} from 'react-native-safe-area-context';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+import React, { ReactNode, useContext } from 'react';
+import { View } from 'react-native';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
 import Icon from 'react-native-vector-icons/Ionicons';
-
-import {Colors} from 'react-native/Libraries/NewAppScreen';
 import VideoPlayingProvider, {
-  VideoPlayingContext,
+  VideoPlayingContext
 } from './src/context/VideoPlayingProvider';
-import {HomeStackParamList} from './src/HomeStack';
-import {HomeStack} from './src/HomeStack.web';
-import {useOrientation} from './src/hooks/useOrientation';
-import HomeScreen from './src/screens/HomeScreen';
+import { HomeStackParamList } from './src/HomeStack';
+import { HomeStack } from './src/HomeStack.web';
 import SettingsScreen from './src/screens/SettingsScreen';
-import {SearchStack} from './src/SearchStack';
+import { SearchStack } from './src/SearchStack';
+import { Colors } from './src/util/color';
+
 
 const Tab = createBottomTabNavigator<TabParamList>();
 
@@ -70,8 +68,9 @@ const App: () => ReactNode = () => {
                 },
               })}
               tabBarOptions={{
-                activeTintColor: 'tomato',
+                activeTintColor: Colors.accent,
                 inactiveTintColor: 'gray',
+                style: {backgroundColor: Colors.primary},
               }}>
               <Tab.Screen name="Home" component={HomeStack} options={{}} />
               <Tab.Screen name="Search" component={SearchStack} options={{}} />

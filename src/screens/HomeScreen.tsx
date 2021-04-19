@@ -1,14 +1,14 @@
-import {StackScreenProps} from '@react-navigation/stack';
-import React, {useEffect, useState} from 'react';
-import {FlatList, StyleSheet, TouchableOpacity, View} from 'react-native';
-import {Button} from 'react-native-elements';
+import { StackScreenProps } from '@react-navigation/stack';
+import firebase from 'firebase/app';
+import React, { useEffect, useState } from 'react';
+import { FlatList, StyleSheet, TouchableOpacity, View } from 'react-native';
+import { Button } from 'react-native-elements';
 import Icon from 'react-native-vector-icons/Ionicons';
 import api from '../api/api';
 import ShowItem from '../components/ShowItem';
-import {HomeStackParamList} from '../HomeStack';
-import {LatestShow} from '../models/LatestShow';
-import firebase from 'firebase/app';
-import ObfuscationUtil from '../util/ObfuscationUtil';
+import { HomeStackParamList } from '../HomeStack';
+import { LatestShow } from '../models/LatestShow';
+import { Colors } from '../util/color';
 
 interface HomeScreenProps extends StackScreenProps<HomeStackParamList> {}
 
@@ -84,6 +84,6 @@ export default HomeScreen;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    // backgroundColor: '#26001b',
+    backgroundColor: Colors.dark,
   },
 });
